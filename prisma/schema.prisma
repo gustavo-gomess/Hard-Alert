@@ -13,8 +13,8 @@ datasource db {
 //USER
 model User {
   id        String  @id @default(uuid())
-  name      String  @unique
-  email     String
+  name      String
+  email     String  @unique
   password  String
   isBlocked Boolean
 
@@ -27,7 +27,7 @@ model User {
 // PERMISSION 
 model Permission {
   id   String @id @default(uuid())
-  name String @unique
+  name String
 
   UserPermission UserPermission[]
 

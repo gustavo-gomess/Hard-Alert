@@ -39,19 +39,16 @@ CREATE TABLE "companies" (
 );
 
 -- CreateTable
-CREATE TABLE "UserCompanies" (
+CREATE TABLE "usersCompanies" (
     "id" TEXT NOT NULL,
     "userId" TEXT,
     "company_id" TEXT NOT NULL,
 
-    CONSTRAINT "UserCompanies_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "usersCompanies_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_name_key" ON "users"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "permissions_name_key" ON "permissions"("name");
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- AddForeignKey
 ALTER TABLE "userspermissions" ADD CONSTRAINT "userspermissions_permissionId_fkey" FOREIGN KEY ("permissionId") REFERENCES "permissions"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -60,7 +57,7 @@ ALTER TABLE "userspermissions" ADD CONSTRAINT "userspermissions_permissionId_fke
 ALTER TABLE "userspermissions" ADD CONSTRAINT "userspermissions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserCompanies" ADD CONSTRAINT "UserCompanies_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "usersCompanies" ADD CONSTRAINT "usersCompanies_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserCompanies" ADD CONSTRAINT "UserCompanies_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "usersCompanies" ADD CONSTRAINT "usersCompanies_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

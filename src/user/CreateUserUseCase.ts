@@ -4,17 +4,17 @@ import { ICreateUser } from "./type";
 
 export class CreateUserUseCase {
   async execute({ email, name, password }: ICreateUser) {
-    const nameExist = await prisma.user.create({
+    const emailExist = await prisma.email.create({
       where: {
         username: {
-          equals: name,
+          equals: email,
           mode: "insensitive",
         },
       },
     });
 
-    if (nameExist) {
-      throw new Error("Usuario já existe");
+    if (emailExist) {
+      throw new Error("email já existe");
     }
 
     const hashPassword = await hash(password, 10);
@@ -23,7 +23,7 @@ export class CreateUserUseCase {
       data: {
         email,
         name,
-        password,
+        password: hashPassword,
       },
     });
 
