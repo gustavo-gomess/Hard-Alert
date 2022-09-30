@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hard-Alert",
+    "description": "This is an API Rent",
+    "version": "1.0.0",
+    "contact": {
+      "email": "gusgegomes@hotmail.com"
+    }
+  },
+  "/categories/import": {
+    "post": {
+      "tags": ["User"],
+      "summary": "Created new User",
+      "description": "Created new User",
+      "security": [{ "bearerAuth": [] }],
+      "requestBody": {
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Created"
+        }
+      }
+    }
+  }
+}
