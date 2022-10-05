@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "./CreateUserUseCase";
+import { CreateUserUseCase } from "../services/CreateUserUseCase";
 
 export class CreateUserController {
   async handle(request: Request, response: Response) {
-    const { email, name, password, isblocked } = request.body;
+    const { email, name, password } = request.body;
 
     const createUserUseCase = new CreateUserUseCase();
 

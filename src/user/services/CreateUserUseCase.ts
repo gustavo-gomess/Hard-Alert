@@ -1,12 +1,12 @@
 import { hash } from "bcrypt";
-import { prisma } from "../database/prismaClient";
-import { ICreateUser } from "./type";
+import { prisma } from "../../database/prismaClient";
+import { ICreateUser } from "../type";
 
 export class CreateUserUseCase {
   async execute({ email, name, password }: ICreateUser) {
-    const emailExist = await prisma.email.create({
+    const emailExist = await prisma.user.findFirst({
       where: {
-        username: {
+        email: {
           equals: email,
           mode: "insensitive",
         },
@@ -24,6 +24,7 @@ export class CreateUserUseCase {
         email,
         name,
         password: hashPassword,
+        isBlocked: false,
       },
     });
 
